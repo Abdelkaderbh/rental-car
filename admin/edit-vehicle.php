@@ -123,8 +123,6 @@
 <label class="col-sm-2 control-label">Select Fuel Type<span style="color:red">*</span></label>
 <div class="col-sm-4">
 <select class="selectpicker" name="fueltype" >
-<option value="">  </option>
-
 <option value="Petrol">Petrol</option>
 <option value="Diesel">Diesel</option>
 <option value="CNG">CNG</option>
@@ -155,7 +153,7 @@
 <div class="col-sm-4">
 <img src="./img/vehicleimages/<?php echo $row['car_pictures']?>" width="300" height="200" style="border:solid 1px #000;">
 
-<input type="file" class="form-control" style="margin-top:15px;"> 
+<input type="file" class="form-control" style="margin-top:15px;" name='img1'> 
 </div>
 
 </div>
@@ -170,26 +168,19 @@
 </div>
 </div>
 </div>						
-
-
-
-
-
-		
-
 <?php }?>
 </form>
 
 										
 <?php
 if (isset($_POST["update"])) {
-			$Req='UPDATE cars SET car_name =:name ,price = :price , description = :description ,Brand = :brand, Fuel_Type = :Fuel,  Model_year = :model_year , Capacity = :capacity where id_car=:id';
+			$Req='UPDATE cars SET car_name =:name ,price = :price , description = :description ,car_pictures=:pictures, Brand = :brand, Fuel_Type = :Fuel,  Model_year = :model_year , Capacity = :capacity where id_car=:id';
 			$stmnt=$pdo->prepare($Req);
 			$car_id = $_GET['id'];
 			$car_name = $_POST['vehicletitle'];
 			$description = $_POST['vehicalorcview'];
-			// #$car_pictures = $_FILES['img1']['name'];
-			// #move_uploaded_file($_FILES['img1']['tmp_name'], "../img/vehicleimages/".$car_pictures);
+			$car_pictures = $_FILES['img1']['name'];
+			move_uploaded_file($_FILES['img1']['tmp_name'], "./img/vehicleimages/".$car_pictures);
 			// #$available_dates = $_POST['date'];
 			$price = $_POST['priceperday'];
 			$Brand = $_POST['brandname'];
@@ -201,7 +192,7 @@ if (isset($_POST["update"])) {
 			$stmnt->bindParam(':id', $car_id);
 			$stmnt->bindParam(':name', $car_name);
 			$stmnt->bindParam(':description', $description);
-			// #$stmt->bindParam(':pictures', $car_pictures);
+			$stmnt->bindParam(':pictures', $car_pictures);
 			// #$stmt->bindParam(':dates', $available_dates);
 			$stmnt->bindParam(':price', $price);
 			$stmnt->bindParam(':brand', $Brand);
@@ -210,7 +201,7 @@ if (isset($_POST["update"])) {
 			$stmnt->bindParam(':model_year', $Model_year);
 			$stmnt->bindParam(':capacity', $Capacity);
 			$stmnt->execute();
-			#header("location:manage-vehicles.php");
+			
 			} ?>
 </div>
 </div>
