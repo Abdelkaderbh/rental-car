@@ -25,6 +25,12 @@ $pdo=new PDO("mysql:host=$host;dbname=$db",$login,$mdp);
         return $ste;
     }
 
+    function delete_message(PDO $pdo,$id){
+        $sql = "DELETE FROM contact_us WHERE contact_us.Id =?";
+        $state = $pdo->prepare($sql);
+        $state->execute([$id]);
+    }
+
 
 
 

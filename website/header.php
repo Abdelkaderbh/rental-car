@@ -57,8 +57,7 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Admin Panel</a>
 
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="login.php">Login</a>
-                            <a class="dropdown-item" href="login.php">Logout</a>
+                            <a class="dropdown-item" href="../admin/index.php">Login</a>
                         </div>
                     </li>
                 </ul>

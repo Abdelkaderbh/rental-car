@@ -123,6 +123,7 @@
 											<td><?php echo $row['sender_email']?></td>
 											<td><?php echo $row['sender_subject']?></td>
 											<td><?php echo $row['sender_message']?></td>
+											<td><a href="./includes/deleteMessage.php?id=<?php echo $id?>" onclick="return confirm('Do you want to delete?');"><i class="fa fa-close"></i></a></td>
 										</tr>
 
 									<?php }?>
